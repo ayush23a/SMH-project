@@ -22,4 +22,24 @@ model User {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   lastLoginAt DateTime @default(now())
+
+  Rooms       Room[]        @relation("UserRooms")
+  ChatMessage ChatMessage[]
+}
+
+model Room {
+  id      String  @id @default(cuid())
+  users   User[]  @relation("UserRooms")
+  private Boolean
+
+  chatMessage ChatMessage[]
+}
+
+model ChatMessage {
+  id       String @id @default(cuid())
+  message  String
+  senderId String
+  sender   User   @relation(fields: [senderId], references: [id])
+  roomId   String
+  room     Room   @relation(fields: [roomId], references: [id])
 }

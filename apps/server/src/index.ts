@@ -3,6 +3,7 @@ import cors from "cors";
 import http from "http";
 import dotenv from "dotenv";
 import WebsocketServer from "./sockets/WebSocketServer";
+import router from "./routes/routes";
 
 
 dotenv.config();
@@ -15,6 +16,8 @@ app.use(
         origin: "*"
     }),
 );
+
+app.use('/api/v1', router);
 
 new WebsocketServer(server);
 
