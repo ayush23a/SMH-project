@@ -47,6 +47,7 @@ export default async function signInController(req: Request, res: Response) {
         }
 
         res.status(201).json({
+            success: true,
             message: 'User updated successfully',
             user: myUser,
             token: data,

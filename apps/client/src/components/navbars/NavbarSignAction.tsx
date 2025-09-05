@@ -1,6 +1,6 @@
 'use client';
-import { MdChevronRight } from 'react-icons/md';
 import { cn } from '../../lib/utils';
+import { ChevronRight } from 'lucide-react'
 import { useState } from 'react';
 import LoginModal from '../utility/LoginModal';
 import { useUserSessionStore } from '../store/user/useUserSessionStore';
@@ -29,7 +29,7 @@ export default function NavbarSigninAction() {
                 )}
             >
                 <span>{session?.user ? 'Go to app' : 'Sign in'}</span>
-                <MdChevronRight className="text-neutral-300 dark:text-dark-base" />
+                <ChevronRight className="text-neutral-300 dark:text-dark-base" />
             </div>
             <LoginModal opensignInModal={opensignInModal} setOpenSignInModal={setOpenSignInModal} />
         </div>
