@@ -20,5 +20,9 @@ export type {
     User,
     Friendship,
     ChatMessage,
+} from '@prisma/client';
+
+export {
     FriendshipStatus,
+    MessageType,
 } from '@prisma/client';

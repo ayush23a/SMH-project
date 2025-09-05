@@ -8,6 +8,11 @@ export interface CustomWebSocket extends WebSocket {
     }
 }
 
+export interface SentMessageType {
+    type: MESSAGE_TYPE;
+    payload: any;
+}
+
 
 export enum MESSAGE_TYPE {
     JOIN_GROUP = 'JOIN_GROUP',
