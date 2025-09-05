@@ -22,14 +22,14 @@ export const authOptions: AuthOptions = {
     callbacks: {
         async signIn({ user, account }: { user: UserType, account: Account | null }) {
             try {
-                if(account?.provider === 'google') {
+                if (account?.provider === 'google') {
                     const response = await axios.post(SIGNIN_URL, {
                         user,
                         account,
                     });
 
                     const result = response.data;
-                    if(result?.success) {
+                    if (result?.success) {
                         user.id = result.user.id.toString();
                         user.token = result.token;
                         return true;
@@ -42,7 +42,7 @@ export const authOptions: AuthOptions = {
             }
         },
         async jwt({ token, user }) {
-            if(user) {
+            if (user) {
                 token.user = user as UserType;
             }
             return token;
