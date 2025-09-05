@@ -16,6 +16,7 @@ export default class WebsocketServer {
 
     private socketMapping: Map<string, CustomWebSocket>; // websocket-id -> websocket
     private roomUsersMapping: Map<string, Set<CustomWebSocket>>; // roomId -> [...custom-websocket]
+    private userSockets: Map<string, Set<CustomWebSocket>>; // userId -> [...custom-websocket]
 
     constructor(server: Server) {
         this.wss = new WebSocketServer({ server });
@@ -24,6 +25,7 @@ export default class WebsocketServer {
 
         this.socketMapping = new Map<string, CustomWebSocket>();
         this.roomUsersMapping = new Map();
+        this.userSockets = new Map();
 
         this.init();
     }
@@ -90,7 +92,7 @@ export default class WebsocketServer {
 
         const validatedUser = await this.validateUserInDB(userId);
 
-        if(!validatedUser) {
+        if (!validatedUser) {
             ws.close();
             return;
         }
@@ -105,6 +107,11 @@ export default class WebsocketServer {
         ws.id = this.getSocketId();
         ws.user.id = validatedUser.id;
         this.socketMapping.set(ws.id, ws);
+        this.addToOnlineUsers(ws);
+    }
+
+    private async addToOnlineUsers(ws: CustomWebSocket) {
+        
     }
 
     private async validateUserInDB(userId: string) {
@@ -113,14 +120,8 @@ export default class WebsocketServer {
                 id: userId,
             },
         });
-        
-        return user;
-    }
 
-    private cleanupSocket(ws: CustomWebSocket) {
-        if(this.socketMapping.has(ws.id)) {
-            this.socketMapping.delete(ws.id);
-        }
+        return user;
     }
 
     private handleMessage(ws: CustomWebSocket, data: string) {
@@ -164,16 +165,22 @@ export default class WebsocketServer {
 
     private async handleJoinChat(ws: CustomWebSocket, payload: any) {
         try {
-            
-            
+
+
 
         } catch (error) {
-            
+
         }
     }
 
     private sendMessage(ws: CustomWebSocket, message: any) {
 
+    }
+
+    private cleanupSocket(ws: CustomWebSocket) {
+        if (this.socketMapping.has(ws.id)) {
+            this.socketMapping.delete(ws.id);
+        }
     }
 
     private getSocketId() {
