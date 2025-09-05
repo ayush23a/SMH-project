@@ -25,11 +25,11 @@ export default function NavbarSigninAction() {
                 onClick={handler}
                 className={cn(
                     'font-light text-base tracking-wide flex items-center justify-center transition-transform hover:-translate-y-0.5 cursor-pointer z-[10] pr-1 rounded-lg',
-                    'bg-neutral-900 text-neutral-200 px-4 py-2',
+                    'bg-neutral-200 text-neutral-800 px-4 py-2',
                 )}
             >
                 <span>{session?.user ? 'Go to app' : 'Sign in'}</span>
-                <ChevronRight className="text-neutral-300 dark:text-dark-base" />
+                <ChevronRight className="stroke-1 dark:text-dark-base" />
             </div>
             <LoginModal opensignInModal={opensignInModal} setOpenSignInModal={setOpenSignInModal} />
         </div>

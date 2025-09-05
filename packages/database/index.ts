@@ -18,4 +18,7 @@ if (process.env.NODE_ENV !== "production") globalThis.prismaGlobal = prisma;
 export type {
     Prisma,
     User,
+    Friendship,
+    ChatMessage,
+    FriendshipStatus,
 } from '@prisma/client';

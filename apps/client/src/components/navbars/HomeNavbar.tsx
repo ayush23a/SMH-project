@@ -2,7 +2,9 @@
 
 import { cn } from '@/src/lib/utils';
 import NavItems from './NavItems';
-import NavbarSigninAction from './NavbarSignAction';
+import { useUserSessionStore } from '../store/user/useUserSessionStore';
+import Image from 'next/image';
+import NavbarProfile from './NavbarProfile';
 
 const navItems = [
     { name: 'Features', link: '#features' },
@@ -10,7 +12,9 @@ const navItems = [
     { name: 'Contact', link: '#contact' },
 ];
 
-export default function Navbar() {
+export default function HomeNavbar() {
+
+    const { session } = useUserSessionStore();
 
     return (
         <div
@@ -31,7 +35,7 @@ export default function Navbar() {
                     <NavItems items={navItems} />
                 </div>
 
-                <NavbarSigninAction />
+                <NavbarProfile />
             </div>
         </div>
     );

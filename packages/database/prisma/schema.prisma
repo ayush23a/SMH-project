@@ -23,8 +23,26 @@ model User {
   updatedAt   DateTime @updatedAt
   lastLoginAt DateTime @default(now())
 
+  walletAddress   String?
+
+  sentFriendRequests     Friendship[] @relation("SentFriendRequests")
+  receivedFriendRequests Friendship[] @relation("ReceivedFriendRequests")
+
   Rooms       Room[]        @relation("UserRooms")
   ChatMessage ChatMessage[]
+}
+
+model Friendship {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  status FriendshipStatus @default(PENDING)
+
+  senderId String
+  sender   User   @relation("SentFriendRequests", fields: [senderId], references: [id])
+
+  receiverId String
+  receiver   User   @relation("ReceivedFriendRequests", fields: [receiverId], references: [id])
 }
 
 model Room {
@@ -42,4 +60,11 @@ model ChatMessage {
   sender   User   @relation(fields: [senderId], references: [id])
   roomId   String
   room     Room   @relation(fields: [roomId], references: [id])
+}
+
+enum FriendshipStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  BLOCKED
 }
