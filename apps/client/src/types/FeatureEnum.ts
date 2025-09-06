@@ -1,0 +1,10 @@
+export enum FeatureEnum {
+    NONE = 'NONE',
+    MESSAGING = 'MESSAGING',
+    NAVIGATION = 'NAVIGATION',
+    SEND_CRYPTO = 'SEND_CRYPTO',
+    FRIENDS = 'FRIENDS',
+    SETTINGS = 'SETTINGS',
+    ABOUT = 'ABOUT',
+    REVIEW = 'REVIEW',
+}
