@@ -11,3 +11,4 @@ streamlit_folium
 streamlit_javascript
 folium
 openrouteservice
+streamlit_js_eval
