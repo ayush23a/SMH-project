@@ -100,6 +100,8 @@ Never share your private key with anyone.
 Avoid phishing websites that pretend to be wallets.
 Use a cold wallet for storing large amounts securely.
 
+Caution 
+Only provide that much deatails that is asked. No need to provide extra information until requested or asked by the user. 
 
 Home Page
 

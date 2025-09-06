@@ -1,22 +1,22 @@
 import streamlit as st
 from langchain.prompts import ChatPromptTemplate
-from langchain_ollama import OllamaLLM
+from langchain_ollama import OllamaLLM as Ollama
 from langchain_core.output_parsers import StrOutputParser
 
 # Load KB from file
-with open("knowledge1.txt", "r") as f:
+with open("knowledge1.txt", "r", encoding="utf-8") as f:
     knowledge_text = f.read()
 
 
 # Create prompt template
 prompt = ChatPromptTemplate.from_messages([
     ("system", f"You are a platform-specific chatbot. "
-               f"Only answer questions based on the following knowledge base:\n\n{knowledge_text}"),
+               f"Provide only that much deatils that is asked. Only answer questions based on the following knowledge base:\n\n{knowledge_text}"),
     ("human", "{input}")
 ])
 
 # Load Ollama model (gemma3:latest)
-llm = OllamaLLM(model="gemma2:2b")
+llm = Ollama(model="gemma2:2b")
 
 # Streamlit UI
 st.set_page_config(page_title="Grab Super App Chatbot", page_icon="🤖")
@@ -46,3 +46,4 @@ if user_input := st.chat_input("Ask me something about this app..."):
     st.session_state.messages.append({"role": "assistant", "content": response})
     with st.chat_message("assistant"):
         st.markdown(response)
+
