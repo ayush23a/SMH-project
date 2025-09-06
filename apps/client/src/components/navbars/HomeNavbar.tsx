@@ -2,7 +2,7 @@
 
 import { cn } from '@/src/lib/utils';
 import NavItems from './NavItems';
-import { useUserSessionStore } from '../store/user/useUserSessionStore';
+import { useUserSessionStore } from '../../store/user/useUserSessionStore';
 import Image from 'next/image';
 import NavbarProfile from './NavbarProfile';
 

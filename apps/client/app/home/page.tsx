@@ -8,7 +8,7 @@ export default function Home() {
         <div className="h-full w-full flex ">
             <HomeNavbar />
             <SidePanel />
-            <div className="w-full text-red-600 pt-30 ">
+            <div className="w-full text-neutral-200 pt-30 ">
                 <HomeRightComponent />
             </div>
         </div>

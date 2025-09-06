@@ -12,11 +12,13 @@ import React from "react";
 import ToolTipComponent from "../utility/TooltipComponent";
 import { useFeatureStore } from "@/src/store/featrues/useFeatureStore";
 import { FeatureEnum } from "@/src/types/FeatureEnum";
+import { useUserSessionStore } from "@/src/store/user/useUserSessionStore";
 
 export default function SidePanel() {
     const [collapsed, setCollapsed] = useState(false);
     const panelRef = useRef<HTMLDivElement>(null);
     const textRefs = useRef<HTMLSpanElement[]>([]);
+    const { session } = useUserSessionStore();
 
     const sideBarTop = [
         { name: "Messaging", icon: <BiSolidMessage size={20} />, type: FeatureEnum.MESSAGING },
@@ -59,7 +61,12 @@ export default function SidePanel() {
                 <div className="w-full flex justify-end cursor-pointer" onClick={togglePanel}>
                     <MdOutlineSegment size={30} />
                 </div>
-                <ProfileCard />
+                <ProfileCard
+                    name={session?.user.name || ''}
+                    email={session?.user.email || ''}
+                    id={session?.user.id || ''}
+                    image={session?.user.image || ''}
+                />
             </div>
             <div className="w-full flex flex-col gap-y-2">
                 {sideBarTop.map((e, index) => (
