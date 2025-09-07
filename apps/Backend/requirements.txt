@@ -6,3 +6,4 @@ fastapi
 uvicorn
 langchain-ollama
 sse_starlette
+pydantic
