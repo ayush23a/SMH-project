@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 import { Account, AuthOptions, ISODateString } from 'next-auth';
 import { JWT } from 'next-auth/jwt';
 import GoogleProvider from "next-auth/providers/google";

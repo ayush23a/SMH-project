@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useUserSessionStore } from "../store/user/useUserSessionStore";
+import { useUserSessionStore } from "../../store/user/useUserSessionStore";
 import React, { useState, useRef, useEffect } from "react";
 import { cn } from "@/src/lib/utils";
 import { RxExit } from "react-icons/rx";
@@ -54,10 +54,10 @@ const UserPanel = React.forwardRef<HTMLDivElement>((_, ref) => {
 
     function handleOnClick(button: string) {
         if (button === 'Logout') {
-            // signOut({
-            //     callbackUrl: '/'
-            // })
-            setOpenLogoutModal(true);
+            signOut({
+                callbackUrl: '/'
+            })
+            // setOpenLogoutModal(true);
         }
     }
 

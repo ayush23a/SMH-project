@@ -3,6 +3,7 @@
 import { useFeatureStore } from "@/src/store/featrues/useFeatureStore";
 import { FeatureEnum } from "@/src/types/FeatureEnum";
 import MessagingMainRenderer from "../Messaging/MessagingMainRenderer";
+import FriendsMainScreenRenderer from "../Friends/FriendsMainScreenRenderer";
 
 
 export default function HomeRightComponent() {
@@ -20,7 +21,7 @@ export default function HomeRightComponent() {
                 return <div>💸 Send Crypto Component</div>;
 
             case FeatureEnum.FRIENDS:
-                return <div>👥 Friends Component</div>;
+                return <FriendsMainScreenRenderer />;
 
             case FeatureEnum.SETTINGS:
                 return <div>⚙️ Settings Component</div>;

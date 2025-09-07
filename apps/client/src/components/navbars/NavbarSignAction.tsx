@@ -3,7 +3,7 @@ import { cn } from '../../lib/utils';
 import { ChevronRight } from 'lucide-react'
 import { useState } from 'react';
 import LoginModal from '../utility/LoginModal';
-import { useUserSessionStore } from '../store/user/useUserSessionStore';
+import { useUserSessionStore } from '../../store/user/useUserSessionStore';
 import { useRouter } from 'next/navigation';
 
 export default function NavbarSigninAction() {

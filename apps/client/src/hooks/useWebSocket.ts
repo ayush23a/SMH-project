@@ -1,14 +1,40 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import WebSocketClient, { MessagePayload } from "../socket/socket"
-import { usePathname } from "next/navigation";
 import { MESSAGE_TYPE } from "../types/web-socket-types";
+import { useUserSessionStore } from "../store/user/useUserSessionStore";
+import { cleanWebSocketClient, getWebSocketClient } from "../lib/singleton-socket";
 
 
 
 export const useWebSocket = () => {
     const socket = useRef<WebSocketClient | null>(null);
-    const pathname = usePathname(); // figure out this
+    const lastUserIdRef = useRef<string | null>(null);
+    const { session } = useUserSessionStore();
 
+    useEffect(() => {
+
+        if(!session || !session.user || !session.user.id) {
+            return;
+        }
+
+        const userId = session.user.id;
+
+        if(lastUserIdRef.current === userId) {
+            socket.current = getWebSocketClient(userId);
+            return;
+        }
+
+        lastUserIdRef.current = userId;
+        socket.current = getWebSocketClient(userId);
+
+        return () => {
+            if(lastUserIdRef.current !== userId) {
+                cleanWebSocketClient();
+                socket.current = null;
+            }
+        }
+
+    }, [session]);
 
     function subscribeToHandler(type: string, handler: (payload: unknown) => void) {
         if (!socket.current) {

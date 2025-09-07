@@ -5,6 +5,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/options";
 import SessionSetter from "../src/components/utility/SessionSetter";
 import { Toaster } from "sonner";
+import { NotificationComponent } from "@/src/components/utility/NotificationComponent";
 
 const geist = Geist({ subsets: ["latin"] });
 
@@ -22,9 +23,11 @@ export default async function RootLayout({
     return (
         <html lang="en">
             <body className={geist.className}>
-                {children}
-                <Toaster theme="dark" />
-                <SessionSetter session={session} />
+                <NotificationComponent>
+                    {children}
+                    <Toaster theme="dark" />
+                    <SessionSetter session={session} />
+                </NotificationComponent>
             </body>
         </html>
     );

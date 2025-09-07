@@ -36,3 +36,4 @@ apps/server/.env
 
 # ui
 dist/
+venv 
