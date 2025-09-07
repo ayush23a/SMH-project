@@ -1,14 +1,8 @@
 langchain
 python-dotenv
-streamlit
 langchain_community
 langserve
 fastapi
 uvicorn
 langchain-ollama
 sse_starlette
-streamlit_folium
-streamlit_javascript
-folium
-openrouteservice
-streamlit_js_eval

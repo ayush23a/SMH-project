@@ -2,7 +2,6 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_ollama import OllamaLLM
 from langserve import add_routes
-from langserve.validation import platformBatchRequest  # 👈 import model that needs rebuild
 from pydantic import BaseModel
 import os
 from dotenv import load_dotenv
@@ -41,5 +40,15 @@ add_routes(
     path="/platform"
 )
 
-# ✅ Fix: Rebuild the Pydantic model for OpenAPI schema generation
-platformBatchRequest.model_rebuild()
+
+for route in app.routes:
+    if hasattr(route, "body_field") and route.body_field:
+        model = route.body_field.type_
+        if hasattr(model, "model_rebuild"):
+            try:
+                model.model_rebuild()
+            except Exception:
+                pass  # skip if already built
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
